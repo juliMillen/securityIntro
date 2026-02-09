@@ -1,0 +1,44 @@
+{
+  "info": {
+    "_postman_id": "bbaada81-9864-410e-a7a8-d27155f011d6",
+    "name": "Security",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24966089"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8080/hellosec",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "123456",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "juliMillen",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/hellosec",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "hellosec"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
