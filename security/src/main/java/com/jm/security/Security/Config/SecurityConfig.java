@@ -48,20 +48,19 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    /*@Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    @Bean
+    public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(userDetailsService());
         return provider;
-    }*/
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Bean
+    /*@Bean
     public UserDetailsService userDetailsService(){
         List userDetailsList = new ArrayList();
 
@@ -81,5 +80,5 @@ public class SecurityConfig {
                 .authorities("UPDATE")
                 .build());
         return new InMemoryUserDetailsManager(userDetailsList);
-    }
+    }*/
 }
