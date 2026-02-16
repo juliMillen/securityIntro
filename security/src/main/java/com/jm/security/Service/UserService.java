@@ -3,6 +3,7 @@ package com.jm.security.Service;
 import com.jm.security.Entity.UserSec;
 import com.jm.security.Repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,5 +33,9 @@ public class UserService {
 
     public UserSec update(UserSec userSec){
         return userRepository.save(userSec);
+    }
+
+    public String encriptPassword(String password){
+        return new BCryptPasswordEncoder().encode(password);
     }
 }
