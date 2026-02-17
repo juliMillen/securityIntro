@@ -10,7 +10,7 @@ public class HelloWorldController {
 
     @GetMapping("/hellosec")
     //@PreAuthorize("hasAuthority('READ')")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("permitAll()")
     public String secHelloWorld(){
         return "Hello World With Security";
     }

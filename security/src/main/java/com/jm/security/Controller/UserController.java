@@ -7,6 +7,7 @@ import com.jm.security.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -25,6 +26,7 @@ public class UserController {
     private RoleService roleService;
 
     @GetMapping("")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<UserSec>>  getAllUsers()
     {
         List<UserSec> listUsers = userService.findAll();
@@ -32,6 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<UserSec> getUserById(@PathVariable Long id)
     {
         Optional<UserSec> user = userService.findById(id);
@@ -39,6 +42,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserSec> createUser(@RequestBody UserSec userSec)
     {
         Set<Role> roles = new HashSet<>();
@@ -63,6 +67,7 @@ public class UserController {
     }
 
     @PatchMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserSec> updateUserById(@RequestBody UserSec userSec)
     {
         UserSec updateUser = userService.findById(userSec.getId()).orElse(null);
@@ -76,6 +81,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteById(@PathVariable Long id)
     {
         userService.deleteById(id);

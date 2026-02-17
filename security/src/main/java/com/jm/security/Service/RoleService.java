@@ -31,6 +31,13 @@ public class RoleService {
     }
 
     public Role update(Role role) {
-        return roleRepository.save(role);
+        if (roleRepository.findById(role.getId()).isPresent()) {
+            Role newRole = new  Role();
+            newRole.setId(role.getId());
+            newRole.setRole(role.getRole());
+            newRole.setPermissions(role.getPermissions());
+            return roleRepository.save(newRole);
+        }
+        return null;
     }
 }
